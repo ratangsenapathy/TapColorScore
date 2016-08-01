@@ -1,0 +1,14 @@
+#ignore these
+/*
+
+#exclude these
+!/.gitignore
+!/Classes
+!/ScreenShots
+!/Resources
+!/CMakeLists.txt
+!/README.md
+!/proj.android/AndroidManifest.xml
+!/proj.android/jni/Android.mk
+!/proj.ios_mac/ios/AppController.plist
+!/proj.ios_mac/ios/Info.plist
