@@ -5,7 +5,8 @@
 #include "Definitions.h"
 #include "PluginAdColony/PluginAdColony.h"
 #include "PluginFacebook/PluginFacebook.h"
-//#include "PluginReview/PluginReview.h"
+#include "PluginReview/PluginReview.h"
+#include "PluginShare/PluginShare.h"
 #include "SimpleAudioEngine.h"
 
 class GameWorld : public cocos2d::LayerColor

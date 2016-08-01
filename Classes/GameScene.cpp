@@ -717,7 +717,7 @@ void GameWorld::onMusicButtonClick(cocos2d::Ref *ref)
 
 void GameWorld::onRatingsButtonClick(cocos2d::Ref *ref)
 {
- //  sdkbox::PluginReview::show();
+  sdkbox::PluginReview::show();
 }
 
 void GameWorld::onFacebookButtonClick(cocos2d::Ref *ref)
@@ -736,5 +736,17 @@ void GameWorld::onFacebookButtonClick(cocos2d::Ref *ref)
 
 void GameWorld::onTwitterButtonClick(cocos2d::Ref *ref)
 {
+    sdkbox::SocialShareInfo info;
+    info.text = "#sdkbox(www.sdkbox.com) - the cure for sdk fatigue ";
+    info.title = "sdkbox";
+    //info.image = "path/to/image"
+    info.link = "http://www.sdkbox.com";
+    info.showDialog = true; //if you want share with dialog，set the value true
     
+    //sdkbox::SocialPlatform::Platform_Select will show platforms list, let user select which platform want to share
+    //sdkbox::SocialPlatform::Platform_Twitter will share with twitter directly
+    //sdkbox::SocialPlatform::Platform_Facebook will share with facebook directly
+    info.platform = sdkbox::SocialPlatform::Platform_Twitter;
+    sdkbox::PluginShare::share(info);
+
 }

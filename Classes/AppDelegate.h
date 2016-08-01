@@ -1,8 +1,9 @@
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 #include "PluginAdColony/PluginAdColony.h"
-//#include "PluginReview/PluginReview.h"
+#include "PluginReview/PluginReview.h"
 #include "PluginFacebook/PluginFacebook.h"
+#include "PluginShare/PluginShare.h"
 #include "cocos2d.h"
 
 /**
