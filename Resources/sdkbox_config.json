@@ -1,7 +1,37 @@
 {
     "android": {
-        "Facebook": {
-            "debug": true
+        "AdMob": {
+            "test": true, 
+            "ads": {
+                "gameover": {
+                    "type": "interstitial", 
+                    "id": "ca-app-pub-1329374026572143/1092476511"
+                }, 
+                "home": {
+                    "width": 300, 
+                    "type": "banner", 
+                    "id": "ca-app-pub-1329374026572143/2685130917", 
+                    "alignment": "bottom", 
+                    "height": 50
+                }
+            }
+        }, 
+        "Share": {
+            "platforms": {
+                "SMS": {}, 
+                "Twitter": {
+                    "params": {
+                        "secret": "nlmUdPNcFGLWhyLu9cD794EDuDrVQnjd0YjTpB6sX8oHIQRrne", 
+                        "key": "EuovpLL0UhSGB7Jv5eKFJNMqO"
+                    }
+                }, 
+                "Facebook": {
+                    "debug": true, 
+                    "url_scheme_suffix": "", 
+                    "app_id": "650055941816391"
+                }, 
+                "Mail": {}
+            }
         }, 
         "Review": {
             "LaunchLimit": 3, 
@@ -11,22 +41,8 @@
             "LaunchForReminding": 2, 
             "UserEventLimit": 0
         }, 
-        "Share": {
-            "platforms": {
-                "Facebook": {
-                    "debug": true, 
-                    "url_scheme_suffix": "", 
-                    "app_id": "650055941816391"
-                }, 
-                "Twitter": {
-                    "params": {
-                        "secret": "nlmUdPNcFGLWhyLu9cD794EDuDrVQnjd0YjTpB6sX8oHIQRrne", 
-                        "key": "EuovpLL0UhSGB7Jv5eKFJNMqO"
-                    }
-                }, 
-                "SMS": {}, 
-                "Mail": {}
-            }
+        "Facebook": {
+            "debug": true
         }, 
         "AdColony": {
             "debug": true, 
@@ -46,34 +62,50 @@
         }
     }, 
     "ios": {
-        "Facebook": {
-            "debug": true
-        }, 
-        "Review": {
-            "LaunchLimit": 3, 
-            "DayForReminding": 1, 
-            "tryPromptWhenInit": true, 
-            "AppID": "587767923", 
-            "DayLimit": 0, 
-            "LaunchForReminding": 2, 
-            "UserEventLimit": 0
+        "AdMob": {
+            "test": true, 
+            "ads": {
+                "gameover": {
+                    "type": "interstitial", 
+                    "id": "ca-app-pub-1329374026572143/4185543717"
+                }, 
+                "home": {
+                    "width": 300, 
+                    "type": "banner", 
+                    "id": "ca-app-pub-1329374026572143/3847466511", 
+                    "alignment": "bottom", 
+                    "height": 50
+                }
+            }
         }, 
         "Share": {
             "platforms": {
-                "Facebook": {
-                    "debug": true, 
-                    "url_scheme_suffix": "", 
-                    "app_id": "650055941816391"
-                }, 
+                "SMS": {}, 
                 "Twitter": {
                     "params": {
                         "secret": "haVcKarM96Sr4390XLQoHjyRUSyuHdkMX6letcc38h8TOWyiR9", 
                         "key": "BUJTV6NEM7BAhhm82B12VbKGy"
                     }
                 }, 
-                "SMS": {}, 
+                "Facebook": {
+                    "debug": true, 
+                    "url_scheme_suffix": "", 
+                    "app_id": "650055941816391"
+                }, 
                 "Mail": {}
             }
+        }, 
+        "Review": {
+            "LaunchLimit": 3, 
+            "DayForReminding": 0, 
+            "tryPromptWhenInit": true, 
+            "AppID": "587767923", 
+            "DayLimit": 0, 
+            "LaunchForReminding": 2, 
+            "UserEventLimit": 0
+        }, 
+        "Facebook": {
+            "debug": true
         }, 
         "AdColony": {
             "debug": true, 

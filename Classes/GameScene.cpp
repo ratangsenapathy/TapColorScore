@@ -47,7 +47,7 @@ bool GameWorld::init()                          //initialize the game
 
 void GameWorld::loadMainMenu()             //This will load the main menu as the game screen and main menu hass common areas
 {
-
+   // sdkbox::PluginReview::show();
     isMainMenuScreen = true;
     auto keypadListener = EventListenerKeyboard::create();
     keypadListener->onKeyPressed = CC_CALLBACK_2(GameWorld::onKeyPressed, this);
@@ -75,24 +75,26 @@ void GameWorld::loadMainMenu()             //This will load the main menu as the
     
 
     bool soundStatus = UserDefault::getInstance()->getBoolForKey("SoundOn", true);
-       soundButton = addToggleButton("res/soundButton.png", soundButton, soundStatus, Vec2(screenCentreX-4*WALL_WIDTH,screenCentreY - 6*WALL_WIDTH), CC_CALLBACK_1(GameWorld::onSoundButtonClick, this));
+       soundButton = addToggleButton("res/soundButton.png", soundButton, soundStatus, Vec2(screenCentreX-5*WALL_WIDTH,screenCentreY - 6*WALL_WIDTH), CC_CALLBACK_1(GameWorld::onSoundButtonClick, this));
     
     
     bool musicStatus = UserDefault::getInstance()->getBoolForKey("MusicOn", true);
-    musicButton = addToggleButton("res/musicButton.png", musicButton, musicStatus, Vec2(screenCentreX- 2*WALL_WIDTH,screenCentreY - 6*WALL_WIDTH), CC_CALLBACK_1(GameWorld::onMusicButtonClick, this));
+    musicButton = addToggleButton("res/musicButton.png", musicButton, musicStatus, Vec2(screenCentreX- 3*WALL_WIDTH,screenCentreY - 6*WALL_WIDTH), CC_CALLBACK_1(GameWorld::onMusicButtonClick, this));
     
     if(musicStatus)
     {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/gameMusic.mp3",true);
     }
     
-    ratingsButton = addToggleButton("res/ratingsButton.png", ratingsButton, true, Vec2(screenCentreX ,screenCentreY - 6*WALL_WIDTH), CC_CALLBACK_1(GameWorld::onRatingsButtonClick, this));
+    ratingsButton = addToggleButton("res/ratingsButton.png", ratingsButton, true, Vec2(screenCentreX - WALL_WIDTH ,screenCentreY - 6*WALL_WIDTH), CC_CALLBACK_1(GameWorld::onRatingsButtonClick, this));
     
-    facebookButton = addToggleButton("res/facebookButton.png", facebookButton, true, Vec2(screenCentreX +2*WALL_WIDTH,screenCentreY - 6*WALL_WIDTH), CC_CALLBACK_1(GameWorld::onFacebookButtonClick, this));
+    facebookButton = addToggleButton("res/facebookButton.png", facebookButton, true, Vec2(screenCentreX +WALL_WIDTH,screenCentreY - 6*WALL_WIDTH), CC_CALLBACK_1(GameWorld::onFacebookButtonClick, this));
     
-    twitterButton = addToggleButton("res/twitterButton.png",twitterButton, true, Vec2(screenCentreX +4*WALL_WIDTH,screenCentreY - 6*WALL_WIDTH), CC_CALLBACK_1(GameWorld::onTwitterButtonClick, this));
+    twitterButton = addToggleButton("res/twitterButton.png",twitterButton, true, Vec2(screenCentreX +3*WALL_WIDTH,screenCentreY - 6*WALL_WIDTH), CC_CALLBACK_1(GameWorld::onTwitterButtonClick, this));
     
-    mainMenu = Menu::create(playButton,soundButton,musicButton,ratingsButton,facebookButton,twitterButton,NULL);
+    helpButton = addToggleButton("res/helpButton.png",helpButton, true, Vec2(screenCentreX +5*WALL_WIDTH,screenCentreY - 6*WALL_WIDTH), CC_CALLBACK_1(GameWorld::onHelpButtonClick, this));
+    
+    mainMenu = Menu::create(playButton,soundButton,musicButton,ratingsButton,facebookButton,twitterButton,helpButton,NULL);
     mainMenu->setPosition(Point::ZERO);
     
     int best = UserDefault::getInstance()->getIntegerForKey("Best", 0);
@@ -125,7 +127,7 @@ cocos2d::MenuItemToggle* GameWorld::addToggleButton(std::string buttonName,cocos
         toggleButton->setTag(1);
     }
     
-    toggleButton->setScale(visibleSize.width/toggleButton->getContentSize().width/9.0);
+    toggleButton->setScale(visibleSize.width/toggleButton->getContentSize().width/10.0);
     toggleButton->setPosition(position);
     toggleButton->setTag(1);
     toggleButton->setCallback(callback);
@@ -717,7 +719,7 @@ void GameWorld::onMusicButtonClick(cocos2d::Ref *ref)
 
 void GameWorld::onRatingsButtonClick(cocos2d::Ref *ref)
 {
-  sdkbox::PluginReview::show();
+  sdkbox::PluginReview::show(true);
 }
 
 void GameWorld::onFacebookButtonClick(cocos2d::Ref *ref)
@@ -749,4 +751,9 @@ void GameWorld::onTwitterButtonClick(cocos2d::Ref *ref)
     info.platform = sdkbox::SocialPlatform::Platform_Twitter;
     sdkbox::PluginShare::share(info);
 
+}
+
+void GameWorld::onHelpButtonClick(cocos2d::Ref *ref)
+{
+    
 }

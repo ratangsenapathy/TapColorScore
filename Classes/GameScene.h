@@ -28,6 +28,7 @@ public:
     cocos2d::MenuItemToggle* ratingsButton = NULL;
     cocos2d::MenuItemToggle* facebookButton = NULL;
     cocos2d::MenuItemToggle* twitterButton = NULL;
+    cocos2d::MenuItemToggle* helpButton = NULL;
    // cocos2d::MenuItemImage* soundOn;
    // cocos2d::MenuItemImage* soundOff;
     cocos2d::MenuItemImage* playButton = NULL;
@@ -64,6 +65,7 @@ public:
     void onRatingsButtonClick(cocos2d::Ref *ref);
     void onFacebookButtonClick(cocos2d::Ref *ref);
     void onTwitterButtonClick(cocos2d::Ref *ref);
+    void onHelpButtonClick(cocos2d::Ref *ref);
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     void genrateShapes();

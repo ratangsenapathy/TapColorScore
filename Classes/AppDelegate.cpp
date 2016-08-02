@@ -77,11 +77,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     sdkbox::PluginAdColony::init();
     sdkbox::PluginFacebook::init();
     
-    sdkbox::PluginReview::setTitle("custom title");
-    sdkbox::PluginReview::setMessage("custom message");
-    sdkbox::PluginReview::setCancelButtonTitle("custom cancel");
-    sdkbox::PluginReview::setRateButtonTitle("custom rate");
-    sdkbox::PluginReview::setRateLaterButtonTitle("custom rate later");
+    sdkbox::PluginReview::setTitle("Rate Game");
+    sdkbox::PluginReview::setMessage("Hope you enjoyed the game!! Please rate it");
+    sdkbox::PluginReview::setCancelButtonTitle("Cancel");
+    sdkbox::PluginReview::setRateButtonTitle("Rate");
+    sdkbox::PluginReview::setRateLaterButtonTitle("Later");
     sdkbox::PluginReview::init();
 
     
