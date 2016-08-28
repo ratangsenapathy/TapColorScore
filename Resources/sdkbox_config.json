@@ -67,14 +67,14 @@
             "ads": {
                 "gameover": {
                     "type": "interstitial", 
-                    "id": "ca-app-pub-1329374026572143/4185543717"
+                    "id": "ca-app-pub-4955535113580630/6632646105"
                 }, 
                 "home": {
-                    "width": 300, 
+                    "width": 0, 
                     "type": "banner", 
-                    "id": "ca-app-pub-1329374026572143/3847466511", 
+                    "id": "ca-app-pub-4955535113580630/8248980107", 
                     "alignment": "bottom", 
-                    "height": 50
+                    "height": 0
                 }
             }
         }, 

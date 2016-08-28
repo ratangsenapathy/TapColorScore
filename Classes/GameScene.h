@@ -7,6 +7,7 @@
 #include "PluginFacebook/PluginFacebook.h"
 #include "PluginReview/PluginReview.h"
 #include "PluginShare/PluginShare.h"
+#include "PluginAdMob/PluginAdMob.h"
 #include "SimpleAudioEngine.h"
 
 class GameWorld : public cocos2d::LayerColor

@@ -83,7 +83,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     sdkbox::PluginReview::setRateButtonTitle("Rate");
     sdkbox::PluginReview::setRateLaterButtonTitle("Later");
     sdkbox::PluginReview::init();
-
+    sdkbox::PluginAdMob::init();
+    sdkbox::PluginAdMob::cache("home");
+    sdkbox::PluginAdMob::cache("gameover");
     
     sdkbox::PluginShare::init();
     // create a scene. it's an autorelease object

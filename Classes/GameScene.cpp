@@ -48,6 +48,10 @@ bool GameWorld::init()                          //initialize the game
 void GameWorld::loadMainMenu()             //This will load the main menu as the game screen and main menu hass common areas
 {
    // sdkbox::PluginReview::show();
+    
+    if(sdkbox::PluginAdMob::isAvailable("home"))
+        sdkbox::PluginAdMob::show("home");
+    
     isMainMenuScreen = true;
     auto keypadListener = EventListenerKeyboard::create();
     keypadListener->onKeyPressed = CC_CALLBACK_2(GameWorld::onKeyPressed, this);
@@ -147,9 +151,9 @@ void GameWorld::onPlayButtonClick(cocos2d::Ref *ref)
 
 void GameWorld::loadGame()
 {
-    
+    sdkbox::PluginAdMob::hide("home");
     isMainMenuScreen = false;
-    sdkbox::PluginAdColony::show("video");
+   // sdkbox::PluginAdColony::show("video");
     //while(sdkbox::PluginAdColony::videoAdCurrentlyRunning());
     //CCLOG("Lol Nice");
     score = Label::createWithTTF("0", "fonts/MarkerFelt2.ttf", visibleSize.width/20.0f);
@@ -594,6 +598,9 @@ bool GameWorld::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event)
                     int best = UserDefault::getInstance()->getIntegerForKey("Best", 0);
                     if(scoreValue > best)
                         UserDefault::getInstance()->setIntegerForKey("Best", scoreValue);
+                    
+                    if(sdkbox::PluginAdMob::isAvailable("gameover"))
+                        sdkbox::PluginAdMob::show("gameover");
                     loadMainMenu();
                  
                     break;
