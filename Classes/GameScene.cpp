@@ -1,5 +1,5 @@
 #include "GameScene.h"
-
+#include "HelpScene.h"
 USING_NS_CC;
 
 Scene* GameWorld::createScene()
@@ -762,5 +762,6 @@ void GameWorld::onTwitterButtonClick(cocos2d::Ref *ref)
 
 void GameWorld::onHelpButtonClick(cocos2d::Ref *ref)
 {
-    
+    auto scene = Tutorial::createScene();
+    Director::getInstance()->pushScene(scene);
 }

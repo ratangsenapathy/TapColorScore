@@ -27,6 +27,7 @@
 #define RIGHT_WALL 4
 
 #define TRANSITION_TIME 1.0
+#define TUTORIAL_TRANSITION_TIME 4.0f
 
 #endif // __DEFINITIONS_H__
 
