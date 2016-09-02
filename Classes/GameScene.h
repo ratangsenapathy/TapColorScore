@@ -17,10 +17,12 @@ public:
     float shapeDirections[DIRECTION_COUNT][2] = {SHAPE_DIRECTIONS};
     float obstacleTime;
     float generationTime;
+    int counterValue = 60.0f;
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;
     cocos2d::Node* currentShapePoint;
     cocos2d::Label* score = NULL;
+    cocos2d::Label* counter = NULL;
     cocos2d::Menu* mainMenu = NULL;
     cocos2d::Label* titlePart = NULL;
     cocos2d::Label* bestScore = NULL;
@@ -76,6 +78,7 @@ public:
     cocos2d::DrawNode* getShape();
     void shapeGenerator(float dt);
     void currentShapeChooser(float dt);
+    void countDown(float dt);
     void update(float dt);
     WallInfo getInitialEndLocation();
     void wallHit(cocos2d::Node *point,Shape &shape);

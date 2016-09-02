@@ -151,11 +151,15 @@ void GameWorld::onPlayButtonClick(cocos2d::Ref *ref)
 
 void GameWorld::loadGame()
 {
+    
     sdkbox::PluginAdMob::hide("home");
     isMainMenuScreen = false;
-   // sdkbox::PluginAdColony::show("video");
-    //while(sdkbox::PluginAdColony::videoAdCurrentlyRunning());
-    //CCLOG("Lol Nice");
+  
+    counter = Label::createWithTTF("Time:60", "fonts/MarkerFelt2.ttf", visibleSize.width/20.0f);
+    counter->setPosition(Vec2(screenEndX-3*WALL_WIDTH,screenEndY - WALL_WIDTH/2));
+    this->addChild(counter);
+    this->schedule(schedule_selector(GameWorld::countDown),1.0f);
+    
     score = Label::createWithTTF("0", "fonts/MarkerFelt2.ttf", visibleSize.width/20.0f);
     score->setPosition(Vec2(screenCentreX,screenEndY - (WALL_WIDTH/2.0)));
     this->addChild(score);
@@ -287,7 +291,25 @@ DrawNode* GameWorld::getShape()              //returns a random shape
     
 }
 
-
+void GameWorld::countDown(float dt)
+{
+    counterValue--;
+    char time[12];
+    sprintf(time,"Time:%d",counterValue);
+    counter->setString(time);
+    
+    if(counterValue<=0)
+    {
+        releaseResources();
+        int best = UserDefault::getInstance()->getIntegerForKey("Best", 0);
+        if(scoreValue > best)
+            UserDefault::getInstance()->setIntegerForKey("Best", scoreValue);
+        
+        if(sdkbox::PluginAdMob::isAvailable("gameover"))
+            sdkbox::PluginAdMob::show("gameover");
+        loadMainMenu();
+    }
+}
 void GameWorld::update(float dt)
 {
     
