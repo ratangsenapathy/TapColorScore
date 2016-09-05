@@ -670,6 +670,12 @@ void GameWorld::releaseResources()
         bestScore = NULL;
     }
     
+    if(counter !=NULL)
+    {
+        counter->removeFromParent();
+        counter = NULL;
+    }
+    
     if(playButton !=NULL)
     {
         playButton->removeFromParent();

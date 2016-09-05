@@ -1,5 +1,30 @@
 {
     "android": {
+        "Review": {
+            "LaunchLimit": 3, 
+            "DayForReminding": 1, 
+            "tryPromptWhenInit": true, 
+            "DayLimit": 0, 
+            "LaunchForReminding": 2, 
+            "UserEventLimit": 0
+        }, 
+        "Share": {
+            "platforms": {
+                "Facebook": {
+                    "debug": true, 
+                    "url_scheme_suffix": "", 
+                    "app_id": "650055941816391"
+                }, 
+                "Twitter": {
+                    "params": {
+                        "secret": "nlmUdPNcFGLWhyLu9cD794EDuDrVQnjd0YjTpB6sX8oHIQRrne", 
+                        "key": "EuovpLL0UhSGB7Jv5eKFJNMqO"
+                    }
+                }, 
+                "SMS": {}, 
+                "Mail": {}
+            }
+        }, 
         "AdMob": {
             "test": true, 
             "ads": {
@@ -16,33 +41,23 @@
                 }
             }
         }, 
-        "Share": {
-            "platforms": {
-                "SMS": {}, 
-                "Twitter": {
-                    "params": {
-                        "secret": "nlmUdPNcFGLWhyLu9cD794EDuDrVQnjd0YjTpB6sX8oHIQRrne", 
-                        "key": "EuovpLL0UhSGB7Jv5eKFJNMqO"
-                    }
-                }, 
-                "Facebook": {
-                    "debug": true, 
-                    "url_scheme_suffix": "", 
-                    "app_id": "650055941816391"
-                }, 
-                "Mail": {}
-            }
-        }, 
-        "Review": {
-            "LaunchLimit": 3, 
-            "DayForReminding": 1, 
-            "tryPromptWhenInit": true, 
-            "DayLimit": 0, 
-            "LaunchForReminding": 2, 
-            "UserEventLimit": 0
-        }, 
         "Facebook": {
             "debug": true
+        }, 
+        "Chartboost": {
+            "ads": {
+                "Default": {
+                    "type": "interstitial"
+                }, 
+                "Level Complete": {
+                    "type": "rewarded_video"
+                }, 
+                "MoreApp": {
+                    "type": "more_app"
+                }
+            }, 
+            "id": "4f7b433509b6025804000002", 
+            "signature": "dd2d41b69ac01b80f443f5b6cf06096d457f82bd"
         }, 
         "AdColony": {
             "debug": true, 
@@ -62,6 +77,32 @@
         }
     }, 
     "ios": {
+        "Review": {
+            "LaunchLimit": 3, 
+            "DayForReminding": 0, 
+            "tryPromptWhenInit": true, 
+            "AppID": "587767923", 
+            "DayLimit": 0, 
+            "LaunchForReminding": 2, 
+            "UserEventLimit": 0
+        }, 
+        "Share": {
+            "platforms": {
+                "Facebook": {
+                    "debug": true, 
+                    "url_scheme_suffix": "", 
+                    "app_id": "650055941816391"
+                }, 
+                "Twitter": {
+                    "params": {
+                        "secret": "haVcKarM96Sr4390XLQoHjyRUSyuHdkMX6letcc38h8TOWyiR9", 
+                        "key": "BUJTV6NEM7BAhhm82B12VbKGy"
+                    }
+                }, 
+                "SMS": {}, 
+                "Mail": {}
+            }
+        }, 
         "AdMob": {
             "test": true, 
             "ads": {
@@ -78,34 +119,23 @@
                 }
             }
         }, 
-        "Share": {
-            "platforms": {
-                "SMS": {}, 
-                "Twitter": {
-                    "params": {
-                        "secret": "haVcKarM96Sr4390XLQoHjyRUSyuHdkMX6letcc38h8TOWyiR9", 
-                        "key": "BUJTV6NEM7BAhhm82B12VbKGy"
-                    }
-                }, 
-                "Facebook": {
-                    "debug": true, 
-                    "url_scheme_suffix": "", 
-                    "app_id": "650055941816391"
-                }, 
-                "Mail": {}
-            }
-        }, 
-        "Review": {
-            "LaunchLimit": 3, 
-            "DayForReminding": 0, 
-            "tryPromptWhenInit": true, 
-            "AppID": "587767923", 
-            "DayLimit": 0, 
-            "LaunchForReminding": 2, 
-            "UserEventLimit": 0
-        }, 
         "Facebook": {
             "debug": true
+        }, 
+        "Chartboost": {
+            "ads": {
+                "Default": {
+                    "type": "interstitial"
+                }, 
+                "Level Complete": {
+                    "type": "rewarded_video"
+                }, 
+                "MoreApp": {
+                    "type": "more_app"
+                }
+            }, 
+            "id": "4f21c409cd1cb2fb7000001b", 
+            "signature": "92e2de2fd7070327bdeb54c15a5295309c6fcd2d"
         }, 
         "AdColony": {
             "debug": true, 
