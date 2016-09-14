@@ -5,6 +5,8 @@
 #include "PluginFacebook/PluginFacebook.h"
 #include "PluginShare/PluginShare.h"
 #include "PluginAdMob/PluginAdMob.h"
+#include "PluginChartboost/PluginChartboost.h"
+#include "PluginInMobi/PluginInMobi.h"
 #include "cocos2d.h"
 
 /**

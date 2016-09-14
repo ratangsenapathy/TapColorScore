@@ -49,8 +49,12 @@ void GameWorld::loadMainMenu()             //This will load the main menu as the
 {
    // sdkbox::PluginReview::show();
     
+    
+    
     if(sdkbox::PluginAdMob::isAvailable("home"))
         sdkbox::PluginAdMob::show("home");
+    else
+        sdkbox::PluginInMobi::loadBanner();
     
     isMainMenuScreen = true;
     auto keypadListener = EventListenerKeyboard::create();
@@ -153,6 +157,7 @@ void GameWorld::loadGame()
 {
     
     sdkbox::PluginAdMob::hide("home");
+    sdkbox::PluginInMobi::hideBanner();
     isMainMenuScreen = false;
   
     counter = Label::createWithTTF("Time:60", "fonts/MarkerFelt2.ttf", visibleSize.width/20.0f);
@@ -621,7 +626,9 @@ bool GameWorld::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event)
                     if(scoreValue > best)
                         UserDefault::getInstance()->setIntegerForKey("Best", scoreValue);
                     
-                    if(sdkbox::PluginAdMob::isAvailable("gameover"))
+                    if(sdkbox::PluginChartboost::isAvailable(sdkbox::CB_Location_Default))
+                        sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
+                    else if(sdkbox::PluginAdMob::isAvailable("gameover"))
                         sdkbox::PluginAdMob::show("gameover");
                     loadMainMenu();
                  

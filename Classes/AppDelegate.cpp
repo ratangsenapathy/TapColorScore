@@ -86,6 +86,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     sdkbox::PluginAdMob::init();
     sdkbox::PluginAdMob::cache("home");
     sdkbox::PluginAdMob::cache("gameover");
+    sdkbox::PluginChartboost::init();
+    sdkbox::PluginInMobi::init();
     
     sdkbox::PluginShare::init();
     // create a scene. it's an autorelease object

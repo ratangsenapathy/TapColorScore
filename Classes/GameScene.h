@@ -8,6 +8,8 @@
 #include "PluginReview/PluginReview.h"
 #include "PluginShare/PluginShare.h"
 #include "PluginAdMob/PluginAdMob.h"
+#include "PluginChartboost/PluginChartboost.h"
+#include "PluginInMobi/PluginInMobi.h"
 #include "SimpleAudioEngine.h"
 
 class GameWorld : public cocos2d::LayerColor
