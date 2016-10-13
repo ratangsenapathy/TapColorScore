@@ -49,6 +49,7 @@ void GameWorld::loadMainMenu()             //This will load the main menu as the
 {
    // sdkbox::PluginReview::show();
     
+    //sdkbox::PluginSdkboxAds::placement("placement-1");
     
     
     if(sdkbox::PluginAdMob::isAvailable("home"))
@@ -155,11 +156,12 @@ void GameWorld::onPlayButtonClick(cocos2d::Ref *ref)
 
 void GameWorld::loadGame()
 {
-    
+    timeFactor = 1.0f;
     sdkbox::PluginAdMob::hide("home");
     sdkbox::PluginInMobi::hideBanner();
     isMainMenuScreen = false;
   
+    counterValue = 60.0f;
     counter = Label::createWithTTF("Time:60", "fonts/MarkerFelt2.ttf", visibleSize.width/20.0f);
     counter->setPosition(Vec2(screenEndX-3*WALL_WIDTH,screenEndY - WALL_WIDTH/2));
     this->addChild(counter);
@@ -208,6 +210,7 @@ void GameWorld::shapeGenerator(float dt)   //generates shapes
     
     WallInfo wall = getInitialEndLocation();          //get the location where the shape should initially go i.e, a point on the wall
     float unitTime = calculateUnitTimeFromDistance(calculateDistance(Vec2(screenCentreX,screenCentreY),wall.positionOnWall));
+    unitTime*=timeFactor;
     auto rotationPointAction = MoveTo::create(unitTime, wall.positionOnWall);     //action to move the shape by moving the parent rotationPoint
     Shape entry;
     entry.rotationPoint = rotationPoint;   //making an entry for std map dictionary
@@ -303,16 +306,26 @@ void GameWorld::countDown(float dt)
     sprintf(time,"Time:%d",counterValue);
     counter->setString(time);
     
+   if(counterValue<=10 && timeFactor==1.0f)
+    {
+         timeFactor=0.5;
+    }
     if(counterValue<=0)
     {
         releaseResources();
         int best = UserDefault::getInstance()->getIntegerForKey("Best", 0);
         if(scoreValue > best)
             UserDefault::getInstance()->setIntegerForKey("Best", scoreValue);
-        
-        if(sdkbox::PluginAdMob::isAvailable("gameover"))
+        displayGameOver();
+       /* if(sdkbox::PluginAdColony::getStatus("video"))
+            sdkbox::PluginAdColony::show("video");
+        else if(sdkbox::PluginInMobi::isInterstitialReady())
+            sdkbox::PluginInMobi::showInterstitial();
+        else if(sdkbox::PluginChartboost::isAvailable(sdkbox::CB_Location_Default))
+            sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
+        else if(sdkbox::PluginAdMob::isAvailable("gameover"))
             sdkbox::PluginAdMob::show("gameover");
-        loadMainMenu();
+        loadMainMenu();*/
     }
 }
 void GameWorld::update(float dt)
@@ -360,7 +373,10 @@ void GameWorld::wallHit(Node *point,Shape &shape)
     float y1 = shape.initPosition.y;
     float x2 = shape.wall.positionOnWall.x;
     float y2 = shape.wall.positionOnWall.y;
-    float theta = atan((y2 - y1)/(x2 - x1));
+    float theta = 0;
+    if(x2-x1 != 0)
+    theta = atan((y2 - y1)/(x2 - x1));
+    theta =90;
     float slope = tan(M_PI-theta);
     
     shape.initPosition = shape.wall.positionOnWall;
@@ -509,6 +525,7 @@ void GameWorld::wallHit(Node *point,Shape &shape)
     shape.rotationPoint->getChildren().at(0)->removeFromParent();
     shape.rotationPoint->addChild(nextStageShape);
     float unitTime = calculateUnitTimeFromDistance(calculateDistance(shape.initPosition,shape.wall.positionOnWall));
+    unitTime*=timeFactor;
     shapeList[shape.rotationPoint].color = shape.color;
     shape.rotationPoint->runAction(Sequence::create(MoveTo::create(unitTime,shape.wall.positionOnWall),CallFunc::create(CC_CALLBACK_0(GameWorld::wallHit,this,point,shape)),NULL));
 }
@@ -586,7 +603,7 @@ float GameWorld::calculateUnitTimeFromDistance(float distance)
 bool GameWorld::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event)
 {
     Vec2 mousePoint = touch->getLocation();
-    long count = shapeList.size();
+   // long count = shapeList.size();
     
 
     for(auto iterator=shapeList.cbegin();iterator != shapeList.cend();iterator++)
@@ -625,12 +642,18 @@ bool GameWorld::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event)
                     int best = UserDefault::getInstance()->getIntegerForKey("Best", 0);
                     if(scoreValue > best)
                         UserDefault::getInstance()->setIntegerForKey("Best", scoreValue);
-                    
-                    if(sdkbox::PluginChartboost::isAvailable(sdkbox::CB_Location_Default))
+                    displayGameOver();
+                    /*
+                    if(sdkbox::PluginAdColony::getStatus("video"))
+                        sdkbox::PluginAdColony::show("video");
+                    else if(sdkbox::PluginInMobi::isInterstitialReady())
+                        sdkbox::PluginInMobi::showInterstitial();
+                    else if(sdkbox::PluginChartboost::isAvailable(sdkbox::CB_Location_Default))
                         sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
                     else if(sdkbox::PluginAdMob::isAvailable("gameover"))
                         sdkbox::PluginAdMob::show("gameover");
-                    loadMainMenu();
+                    
+                    loadMainMenu();*/
                  
                     break;
                 }
@@ -733,16 +756,7 @@ void GameWorld::onSoundButtonClick(cocos2d::Ref *ref)
 
 void GameWorld::onMusicButtonClick(cocos2d::Ref *ref)
 {
-    /*sdkbox::PluginFacebook::login();
-    sdkbox::PluginFacebook::requestReadPermissions({sdkbox::FB_PERM_READ_PUBLIC_PROFILE, sdkbox::FB_PERM_READ_USER_FRIENDS});
-    sdkbox::FBShareInfo info;
-    info.type  = sdkbox::FB_LINK;
-    info.link  = "http://www.cocos2d-x.org";
-    info.title = "cocos2d-x";
-    info.text  = "Best Game Engine";
-    info.image = "http://cocos2d-x.org/images/logo.png";
-    sdkbox::PluginFacebook::share(info);
-    return;*/
+   
     if(musicButton->getTag() == 1)
     {
         musicButton->setColor(Color3B::GRAY);
@@ -771,20 +785,20 @@ void GameWorld::onFacebookButtonClick(cocos2d::Ref *ref)
     
     sdkbox::FBShareInfo info;
     info.type  = sdkbox::FB_LINK;
-    info.link  = "http://www.cocos2d-x.org";
-    info.title = "cocos2d-x";
-    info.text  = "Best Game Engine";
-    info.image = "http://cocos2d-x.org/images/logo.png";
+    info.link  = "http://tapcolorscore.myfreesites.net/";
+    info.title = "Tap Color Score";
+    info.text  = "Tap color score is an exiting game that tests your reflexes and you need to tap the colored circles as quick as possible depending on the color of the boundary.";
+    info.image = "http://storage.googleapis.com/wzukusers/user-24837410/images/57fed24c9c65eZz7OFOK/IconGame.jpg";
     sdkbox::PluginFacebook::dialog(info);
 }
 
 void GameWorld::onTwitterButtonClick(cocos2d::Ref *ref)
 {
     sdkbox::SocialShareInfo info;
-    info.text = "#sdkbox(www.sdkbox.com) - the cure for sdk fatigue ";
-    info.title = "sdkbox";
-    //info.image = "path/to/image"
-    info.link = "http://www.sdkbox.com";
+    info.text = "Tap color score is an exiting game that tests your reflexes and you need to tap the colored circles as quick as possible depending on the color of the boundary.";
+    info.title = "Tap Color Sccore";
+    info.image = "http://storage.googleapis.com/wzukusers/user-24837410/images/57fed24c9c65eZz7OFOK/IconGame.jpg";
+    info.link = "http://tapcolorscore.myfreesites.net/";
     info.showDialog = true; //if you want share with dialog，set the value true
     
     //sdkbox::SocialPlatform::Platform_Select will show platforms list, let user select which platform want to share
@@ -799,4 +813,50 @@ void GameWorld::onHelpButtonClick(cocos2d::Ref *ref)
 {
     auto scene = Tutorial::createScene();
     Director::getInstance()->pushScene(scene);
+}
+
+void GameWorld::displayGameOver()
+{
+    gameOverLabel = Label::createWithTTF("GameOver", "fonts/Zygoth.ttf", visibleSize.height/20);
+    gameOverLabel->setPosition(Vec2(screenCentreX,screenCentreY + WALL_WIDTH*8));
+    this->addChild(gameOverLabel,2);
+    gameOverLabel->setColor(this->getColor());
+    
+    auto goBack = Label::createWithSystemFont("Go Back", "fonts/Zygoth.ttf", visibleSize.height/25);
+    goBack->setColor(this->getColor());
+    auto menuLabelGoBack = MenuItemLabel::create(goBack, CC_CALLBACK_1(GameWorld::onGameOver, this));
+    menuLabelGoBack->setPosition(Vec2(screenCentreX,screenCentreY + WALL_WIDTH*4));
+    gameOverMenu = Menu::create(menuLabelGoBack, NULL);
+    gameOverMenu->setPosition(Vec2::ZERO);
+    this->addChild(gameOverMenu, 10);
+    
+}
+
+void GameWorld::onGameOver(cocos2d::Ref *ref)
+{
+    if(gameOverMenu!=NULL)
+    {
+        //gameOverMenu->removeAllChildren();
+        gameOverMenu->removeFromParent();
+        gameOverMenu=NULL;
+    }
+    if(gameOverLabel!=NULL)
+    {
+        gameOverLabel->removeFromParent();
+        gameOverLabel=NULL;
+    }
+    
+    this->removeChild(gameOverMenu);
+    if(sdkbox::PluginAdColony::getStatus("video"))
+        sdkbox::PluginAdColony::show("video");
+    else if(sdkbox::PluginInMobi::isInterstitialReady())
+        sdkbox::PluginInMobi::showInterstitial();
+    else if(sdkbox::PluginChartboost::isAvailable(sdkbox::CB_Location_Default))
+        sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
+    else if(sdkbox::PluginAdMob::isAvailable("gameover"))
+        sdkbox::PluginAdMob::show("gameover");
+    
+    loadMainMenu();
+
+    
 }

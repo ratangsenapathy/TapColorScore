@@ -1,6 +1,5 @@
 #ifndef __GAME_SCENE_H__
 #define __GAME_SCENE_H__
-
 #include "cocos2d.h"
 #include "Definitions.h"
 #include "PluginAdColony/PluginAdColony.h"
@@ -11,6 +10,7 @@
 #include "PluginChartboost/PluginChartboost.h"
 #include "PluginInMobi/PluginInMobi.h"
 #include "SimpleAudioEngine.h"
+//#include "PluginSdkboxAds/PluginSdkboxAds.h"
 
 class GameWorld : public cocos2d::LayerColor
 {
@@ -34,9 +34,12 @@ public:
     cocos2d::MenuItemToggle* facebookButton = NULL;
     cocos2d::MenuItemToggle* twitterButton = NULL;
     cocos2d::MenuItemToggle* helpButton = NULL;
+    cocos2d::Menu * gameOverMenu = NULL;
+    cocos2d::Label *gameOverLabel;
    // cocos2d::MenuItemImage* soundOn;
    // cocos2d::MenuItemImage* soundOff;
     cocos2d::MenuItemImage* playButton = NULL;
+    float timeFactor=1.0f;
     int scoreValue;
     int screenCentreX;
     int screenCentreY;
@@ -71,6 +74,7 @@ public:
     void onFacebookButtonClick(cocos2d::Ref *ref);
     void onTwitterButtonClick(cocos2d::Ref *ref);
     void onHelpButtonClick(cocos2d::Ref *ref);
+    void onGameOver(cocos2d::Ref *ref);
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     void genrateShapes();
@@ -100,6 +104,7 @@ public:
     void loadMainMenu();
     void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
     cocos2d::MenuItemToggle* addToggleButton(std::string buttonName,cocos2d::MenuItemToggle * toggleButton,bool status,cocos2d::Vec2 position,const cocos2d::ccMenuCallback &callback);
+    void displayGameOver();
     
 };
 

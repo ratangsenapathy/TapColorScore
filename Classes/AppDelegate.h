@@ -7,6 +7,7 @@
 #include "PluginAdMob/PluginAdMob.h"
 #include "PluginChartboost/PluginChartboost.h"
 #include "PluginInMobi/PluginInMobi.h"
+//#include "PluginSdkboxAds/PluginSdkboxAds.h"
 #include "cocos2d.h"
 
 /**
