@@ -90,6 +90,8 @@ void Tutorial::showTutorial()
     auto basicScoringCriteriaImage3 = makeSprite("res/ScoringCriteriaInstruction3.png", false);
     this->addChild(basicScoringCriteriaImage3);
     
+    Label *resetTimerLabel = makeLabel("If the counter value goes below 10 seconds then the speed of the shapes increases. Touching a vlaid shape during this time will add some seconds to the counter depending the translucency ofthe shape","fonts/Zygoth.ttf",4,false);
+    
     
    // gameArea->runAction(FadeIn::create(4.0f));
     auto introTextAction1 = TargetedAction::create(introText,FadeIn::create(TUTORIAL_TRANSITION_TIME));

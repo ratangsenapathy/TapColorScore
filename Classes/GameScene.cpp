@@ -157,6 +157,7 @@ void GameWorld::onPlayButtonClick(cocos2d::Ref *ref)
 void GameWorld::loadGame()
 {
     timeFactor = 1.0f;
+    scoreValue=0;
     sdkbox::PluginAdMob::hide("home");
     sdkbox::PluginInMobi::hideBanner();
     isMainMenuScreen = false;
@@ -308,7 +309,7 @@ void GameWorld::countDown(float dt)
     
    if(counterValue<=10 && timeFactor==1.0f)
     {
-         timeFactor=0.5;
+         timeFactor=0.6;
     }
     if(counterValue<=0)
     {
@@ -328,6 +329,7 @@ void GameWorld::countDown(float dt)
         loadMainMenu();*/
     }
 }
+
 void GameWorld::update(float dt)
 {
     
@@ -375,8 +377,10 @@ void GameWorld::wallHit(Node *point,Shape &shape)
     float y2 = shape.wall.positionOnWall.y;
     float theta = 0;
     if(x2-x1 != 0)
-    theta = atan((y2 - y1)/(x2 - x1));
-    theta =90;
+        theta = atan((y2 - y1)/(x2 - x1));
+    else
+        theta =M_PI/2;
+    
     float slope = tan(M_PI-theta);
     
     shape.initPosition = shape.wall.positionOnWall;
@@ -633,6 +637,11 @@ bool GameWorld::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event)
                     scoreStringStream << scoreValue;
                     std::string scoreString = scoreStringStream.str();
                     score->setString(scoreString);
+                    if(timeFactor!=1.0f)
+                    {
+                        timeFactor=1.0f;
+                        counterValue=60.0f;
+                    }
                     break;
                 }
                 else

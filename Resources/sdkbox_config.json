@@ -192,7 +192,7 @@
         }, 
         "InMobi": {
             "version": 1, 
-            "account_id": "596192bea1274e60b5a662007c717a7a", 
+            "account_id": "92f2dc8afe0b4baa9bd557bdf8edca76", 
             "ads": {
                 "ad2": {
                     "type": "interstitial", 
@@ -202,13 +202,13 @@
                     "width": 300, 
                     "type": "banner", 
                     "id": "1473062326450", 
-                    "alignment": "top", 
+                    "alignment": “bottom”, 
                     "height": 50
                 }
             }
         }, 
         "Chartboost": {
-            "id": "4f7b433509b6025804000002", 
+            "id": "5807ed6304b016574f1d6b22", 
             "cache": {
                 "Default": true, 
                 "Level Complete": true, 
@@ -225,11 +225,11 @@
                     "type": "more_app"
                 }
             }, 
-            "signature": "dd2d41b69ac01b80f443f5b6cf06096d457f82bd"
+            "signature": "46bf1782a2ad52a91bbe578833922230c576ea31"
         }, 
         "AdColony": {
             "debug": true, 
-            "id": "appe5260f8358ee4cc683", 
+            "id": "appa19f9a1c0efe41b092", 
             "ads": {
                 "v4vc": {
                     "v4vc": true, 
@@ -239,7 +239,7 @@
                 }, 
                 "video": {
                     "v4vc": false, 
-                    "zone": "vzdffe532a4d1c46fdb5"
+                    "zone": "vz6b2cff6082e342c2a3"
                 }
             }
         }
@@ -289,7 +289,7 @@
                 "Mail": {}
             }
         }, 
-        "Appnext": {
+        "Appnext": {I
             "debug": true, 
             "ads": {
                 "default": {
