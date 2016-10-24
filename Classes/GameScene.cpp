@@ -307,7 +307,7 @@ void GameWorld::countDown(float dt)
     sprintf(time,"Time:%d",counterValue);
     counter->setString(time);
     
-   if(counterValue<=10cd  && timeFactor==1.0f)
+   if(counterValue<=10  && timeFactor==1.0f)
     {
          timeFactor=0.7;
     }
