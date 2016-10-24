@@ -307,9 +307,9 @@ void GameWorld::countDown(float dt)
     sprintf(time,"Time:%d",counterValue);
     counter->setString(time);
     
-   if(counterValue<=10 && timeFactor==1.0f)
+   if(counterValue<=10cd  && timeFactor==1.0f)
     {
-         timeFactor=0.6;
+         timeFactor=0.7;
     }
     if(counterValue<=0)
     {
@@ -630,6 +630,7 @@ bool GameWorld::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event)
                     shape.rotationPoint->stopAllActions();
                     shape.rotationPoint->removeAllChildren();
                     shape.rotationPoint->removeFromParent();
+                    float alpha = shape.color.a;
                     shapeList.erase(iterator++);
                     //CCLOG("Alpha=%f",shape.color.a);
                     scoreValue +=  1.0/shape.color.a *5.0;
@@ -640,7 +641,15 @@ bool GameWorld::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event)
                     if(timeFactor!=1.0f)
                     {
                         timeFactor=1.0f;
-                        counterValue=60.0f;
+                        if(alpha ==1.0f)
+                            counterValue+=10.0f;
+                        else if(alpha >200.0f/255)
+                            counterValue+=20;
+                        else if(alpha > 150.0f/255)
+                            counterValue+=30;
+                        else
+                            if(alpha>100.0f/255)
+                                counterValue+=40;
                     }
                     break;
                 }

@@ -91,6 +91,7 @@ void Tutorial::showTutorial()
     this->addChild(basicScoringCriteriaImage3);
     
     Label *resetTimerLabel = makeLabel("If the counter value goes below 10 seconds then the speed of the shapes increases. Touching a vlaid shape during this time will add some seconds to the counter depending the translucency ofthe shape","fonts/Zygoth.ttf",4,false);
+    this->addChild(resetTimerLabel);
     
     
    // gameArea->runAction(FadeIn::create(4.0f));
@@ -111,6 +112,9 @@ void Tutorial::showTutorial()
     auto basicScoringCriteriaImage3Action1 = TargetedAction::create(basicScoringCriteriaImage3, FadeIn::create(TUTORIAL_TRANSITION_TIME));
     auto basicScoringCriteriaImage3Action2 = TargetedAction::create(basicScoringCriteriaImage3, FadeOut::create(TUTORIAL_TRANSITION_TIME));
 
+    auto resetTimerLabelAction1 = TargetedAction::create(resetTimerLabel, FadeIn::create(TUTORIAL_TRANSITION_TIME));
+    auto resetTimerLabelAction2 = TargetedAction::create(resetTimerLabel, FadeOut::create(TUTORIAL_TRANSITION_TIME));
+
     auto endTutorial = CallFunc::create([](){
         Director::getInstance()->popScene();
     });
@@ -122,6 +126,7 @@ void Tutorial::showTutorial()
                                      ,basicScoringCriteriaImage2Action1,basicScoringCriteriaImage2Action2
                                      ,basicScoringCriteria3Action1,basicScoringCriteria3Action2
                                      ,basicScoringCriteriaImage3Action1,basicScoringCriteriaImage3Action2
+                                     ,resetTimerLabelAction1,resetTimerLabelAction2
                                      ,endTutorial
                                      ,nullptr));
    // this->setOpacity(0);
