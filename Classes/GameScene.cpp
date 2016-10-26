@@ -805,7 +805,7 @@ void GameWorld::onFacebookButtonClick(cocos2d::Ref *ref)
     info.type  = sdkbox::FB_LINK;
     info.link  = "http://tapcolorscore.myfreesites.net/";
     info.title = "Tap Color Score";
-    info.text  = "Tap color score is an exiting game that tests your reflexes and you need to tap the colored circles as quick as possible depending on the color of the boundary.";
+    info.text  = "Tap color score is an exiting game that tests your reflexes by tapping tap the colored circles as quick as possible.";
     info.image = "http://storage.googleapis.com/wzukusers/user-24837410/images/57fed24c9c65eZz7OFOK/IconGame.jpg";
     sdkbox::PluginFacebook::dialog(info);
 }
@@ -813,12 +813,13 @@ void GameWorld::onFacebookButtonClick(cocos2d::Ref *ref)
 void GameWorld::onTwitterButtonClick(cocos2d::Ref *ref)
 {
     sdkbox::SocialShareInfo info;
-    info.text = "Tap color score is an exiting game that tests your reflexes and you need to tap the colored circles as quick as possible depending on the color of the boundary.";
+    info.text = "Tap color score is an exiting game that tests your reflexes by tapping tap the colored circles as quick as possible.";
     info.title = "Tap Color Sccore";
     info.image = "http://storage.googleapis.com/wzukusers/user-24837410/images/57fed24c9c65eZz7OFOK/IconGame.jpg";
     info.link = "http://tapcolorscore.myfreesites.net/";
     info.showDialog = true; //if you want share with dialog，set the value true
     
+  
     //sdkbox::SocialPlatform::Platform_Select will show platforms list, let user select which platform want to share
     //sdkbox::SocialPlatform::Platform_Twitter will share with twitter directly
     //sdkbox::SocialPlatform::Platform_Facebook will share with facebook directly
@@ -865,14 +866,18 @@ void GameWorld::onGameOver(cocos2d::Ref *ref)
     }
     
     this->removeChild(gameOverMenu);
-    if(sdkbox::PluginAdColony::getStatus("video"))
+   if(sdkbox::PluginAdColony::getStatus("video"))
         sdkbox::PluginAdColony::show("video");
+   else if(sdkbox::PluginAdMob::isAvailable("gameover"))
+       sdkbox::PluginAdMob::show("gameover");
     else if(sdkbox::PluginInMobi::isInterstitialReady())
         sdkbox::PluginInMobi::showInterstitial();
     else if(sdkbox::PluginChartboost::isAvailable(sdkbox::CB_Location_Default))
         sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
-    else if(sdkbox::PluginAdMob::isAvailable("gameover"))
-        sdkbox::PluginAdMob::show("gameover");
+    
+    
+    
+   
     
     loadMainMenu();
 
