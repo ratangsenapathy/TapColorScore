@@ -866,14 +866,14 @@ void GameWorld::onGameOver(cocos2d::Ref *ref)
     }
     
     this->removeChild(gameOverMenu);
-   if(sdkbox::PluginAdColony::getStatus("video"))
+    if(sdkbox::PluginChartboost::isAvailable(sdkbox::CB_Location_Default))
+        sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
+    else if(sdkbox::PluginAdMob::isAvailable("gameover"))
+        sdkbox::PluginAdMob::show("gameover");
+   else if(sdkbox::PluginAdColony::getStatus("video"))
         sdkbox::PluginAdColony::show("video");
-   else if(sdkbox::PluginAdMob::isAvailable("gameover"))
-       sdkbox::PluginAdMob::show("gameover");
     else if(sdkbox::PluginInMobi::isInterstitialReady())
         sdkbox::PluginInMobi::showInterstitial();
-    else if(sdkbox::PluginChartboost::isAvailable(sdkbox::CB_Location_Default))
-        sdkbox::PluginChartboost::show(sdkbox::CB_Location_Default);
     
     
     

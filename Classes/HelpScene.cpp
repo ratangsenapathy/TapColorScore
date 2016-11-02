@@ -33,6 +33,10 @@ bool Tutorial::init()                          //initialize the game
         return false;
     }
     
+    auto keypadListener = EventListenerKeyboard::create();
+    keypadListener->onKeyReleased = CC_CALLBACK_2(Tutorial::onKeyReleased, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keypadListener, this);
+
     showTutorial();
     return true;
  }
@@ -132,6 +136,14 @@ void Tutorial::showTutorial()
    // this->setOpacity(0);
     
 
+}
+
+void Tutorial::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
+{
+    if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
+    {
+            Director::getInstance()->popScene();
+    }
 }
 
 

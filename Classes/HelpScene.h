@@ -30,6 +30,7 @@ public:
     void increaseVisibility(float dt);
     cocos2d::Label* makeLabel(const std::string text,const std::string font,int fontSize, bool isVisible);
     cocos2d::Sprite* makeSprite(const std::string resourceLocation,bool isVisible);
+    void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
     
 };
 
